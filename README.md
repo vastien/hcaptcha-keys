@@ -2,9 +2,9 @@
 
 > Automatically extracted cipher key material for every hCaptcha build. Updated hourly via GitHub Actions.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-18_16%3A44%3A24_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-18_16%3A44%3A24_UTC-green)
-![Version](https://img.shields.io/badge/version-30853664042db60f-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-18_19%3A12%3A58_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-18_19%3A12%3A58_UTC-green)
+![Version](https://img.shields.io/badge/version-578c802eb448d959-lightgrey)
 
 ## ⚠️ Disclaimer
 
@@ -14,18 +14,18 @@ This repository is for **educational and security research** purposes only. Use 
 
 | Field | Value |
 |-------|-------|
-| **Version hash** | `30853664042db60f598c739e065465c71ef240ab6038f4eb0f96d25c5011e04f` |
-| **Last checked** | 2026-10-18 16:44:24 UTC |
-| **Last updated** | 2026-10-18 16:44:24 UTC |
+| **Version hash** | `578c802eb448d959e4d0ea0a00142397fa5230846abbf59d3af245ac01e5c1c0` |
+| **Last checked** | 2026-10-18 19:12:58 UTC |
+| **Last updated** | 2026-10-18 19:12:58 UTC |
 
 ## HSW Cipher Keys
 
 | Key | Value |
 |-----|-------|
-| encrypt\_key | *(not extracted)* |
-| decrypt\_key | *(not extracted)* |
-| n\_key | *(not extracted)* |
-| fingerprint\_blob\_key | *(not extracted)* |
+| encrypt\_key | `17000000ea000000a00000004c00000000000000f3000000f00000003c000000` |
+| decrypt\_key | `460000001b000000400000007b0000000f000000c00000003f00000033000000` |
+| n\_key | `540f94a16a2da38d6df424aa45b5e727de0602a758d4a841d6f1b8c953cbcb74` |
+| fingerprint\_blob\_key | `134c156880843d5af98f6577d0440049771ab1b35e35c12b86db8611e5d816bb` |
 
 **Key descriptions:**
 
@@ -45,10 +45,11 @@ N-token:   AES-256-CTR, counter block = iv(12) || be32(counter)
 
 | Key Name | Value |
 |----------|-------|
-| n\_key | *(not extracted)* |
-| response\_decrypt\_key | *(not extracted)* |
-| payload\_encrypt\_key | *(not extracted)* |
+| n\_key | `8287b3f8ac675a4f9e4a78b5e449b699db63fe62778e82b32d058835d5477215` |
+| response\_decrypt\_key | `5b07d6af1ba8fed167d444cdaa1903a7265f655febc28a792f3345fdf4688e62` |
+| payload\_encrypt\_key | `95ea4e868e8b40b9c9f4d227857442e756a2c65db3aec59d5e632df42281c950` |
 
+**HSJ wire format:** `ct(N) || tag(16) || iv(12) || 0x00`
 
 ## Programmatic Access
 

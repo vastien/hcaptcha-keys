@@ -1,0 +1,21 @@
+{
+  "version": "dd65d742215b295a0b8c653ecaae08004da710da6d670681f7990d45174669cf",
+  "last_checked": "2026-10-18T17:09:28.823Z",
+  "last_updated": "2026-10-18T17:09:28.823Z",
+  "hsw": {
+    "encrypt_key": "e4d37ec652c18201b948655981a820a8",
+    "decrypt_key": "db29898a8b9859b4b63a8f387830f539",
+    "n_key": "7b7f6a4c45bc943062f8687d612136243742b3c5e2215c9e6996b5e024acce6f",
+    "fingerprint_blob_key": "85a4866210b6faa1f7947dd4b118e02532b230eab9da7f5641cd62aec76b40dc",
+    "extraction_method": "wasm_runtime_patching",
+    "shadow_memory": "560c55e4a298159c68f6dbe8efb5dbb88b291d0e8cc0e2c8b37cc9aa06e4232e8b2b6d1a8315ca00b744f9dba803641855cfcfe759f24b1edd3f79036e6f7cbf7b7f6a4c45bc943062f8687d612136243742b3c5e2215c9e6996b5e024acce6f"
+  },
+  "hsj": {
+    "n_key": "8ee67ee06f3548a9033033443d2778285d9239c84f50e0ed6c08e15eeb993a45",
+    "response_decrypt_key": "11a0dea135f04c53d348c064292aaeeae690776d154bbf9c7fa97b4da81cec91",
+    "payload_encrypt_key": "b5f9c7805ed576a37ba845d0b611b9a6d68a6b71978bd6cdf868421d44be4104",
+    "cipher": "AES-256-GCM",
+    "wire_format": "ct(N) || tag(16) || iv(12) || 0x00"
+  },
+  "archived_at": "2026-10-18T17:09:28.823Z"
+}
