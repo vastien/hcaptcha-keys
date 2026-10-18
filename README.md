@@ -2,9 +2,9 @@
 
 > Automatically extracted cipher key material for every hCaptcha build. Updated hourly via GitHub Actions.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-18_16%3A36%3A12_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-18_16%3A33%3A18_UTC-green)
-![Version](https://img.shields.io/badge/version-328395d3f1d70827-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-18_16%3A44%3A24_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-18_16%3A44%3A24_UTC-green)
+![Version](https://img.shields.io/badge/version-30853664042db60f-lightgrey)
 
 ## ⚠️ Disclaimer
 
@@ -14,18 +14,18 @@ This repository is for **educational and security research** purposes only. Use 
 
 | Field | Value |
 |-------|-------|
-| **Version hash** | `328395d3f1d70827e9bae48051926194029dd6ba330c7b9db7cdbc8387468d39` |
-| **Last checked** | 2026-10-18 16:36:12 UTC |
-| **Last updated** | 2026-10-18 16:33:18 UTC |
+| **Version hash** | `30853664042db60f598c739e065465c71ef240ab6038f4eb0f96d25c5011e04f` |
+| **Last checked** | 2026-10-18 16:44:24 UTC |
+| **Last updated** | 2026-10-18 16:44:24 UTC |
 
 ## HSW Cipher Keys
 
 | Key | Value |
 |-----|-------|
-| encrypt\_key | `a0e7c66ca66624ce6fea75dd0a63e3bd` |
-| decrypt\_key | `09c737323511a5a521805cd2b62b679a` |
-| n\_key | `b0e4f2d6a6d8cd39037c6ec3bab4c2191a827286722c222eeca742444dbb92ad` |
-| fingerprint\_blob\_key | `e80273cf20d3a94e29904578ccca1a1d9c22aa5d7dc761c825b7605e38f9f08c` |
+| encrypt\_key | *(not extracted)* |
+| decrypt\_key | *(not extracted)* |
+| n\_key | *(not extracted)* |
+| fingerprint\_blob\_key | *(not extracted)* |
 
 **Key descriptions:**
 
@@ -54,7 +54,7 @@ N-token:   AES-256-CTR, counter block = iv(12) || be32(counter)
 
 ```javascript
 const data = await fetch(
-  'https://raw.githubusercontent.com/YOUR_USER/hcaptcha-keys-tracker/main/data/keys.json'
+  'https://raw.githubusercontent.com/vastien/hcaptcha-keys-tracker/main/data/keys.json'
 ).then(r => r.json());
 
 const nKey            = data.hsw.n_key;             // 64 hex chars (32 bytes)

@@ -1,0 +1,15 @@
+{
+  "version": "30853664042db60f598c739e065465c71ef240ab6038f4eb0f96d25c5011e04f",
+  "last_checked": "2026-10-18T16:44:24.842Z",
+  "last_updated": "2026-10-18T16:44:24.842Z",
+  "hsw": {
+    "encrypt_key": null,
+    "decrypt_key": null,
+    "n_key": null,
+    "fingerprint_blob_key": null,
+    "extraction_method": "none",
+    "shadow_memory": null
+  },
+  "hsj": null,
+  "archived_at": "2026-10-18T16:44:24.842Z"
+}
