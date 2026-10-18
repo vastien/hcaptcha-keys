@@ -2,9 +2,9 @@
 
 > Automatically extracted cipher key material for every hCaptcha build. Updated hourly via GitHub Actions.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-18_19%3A12%3A58_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-18_19%3A12%3A58_UTC-green)
-![Version](https://img.shields.io/badge/version-578c802eb448d959-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-18_22%3A12%3A43_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-18_22%3A12%3A43_UTC-green)
+![Version](https://img.shields.io/badge/version-4e1f3b15d29c9d56-lightgrey)
 
 ## ⚠️ Disclaimer
 
@@ -14,18 +14,18 @@ This repository is for **educational and security research** purposes only. Use 
 
 | Field | Value |
 |-------|-------|
-| **Version hash** | `578c802eb448d959e4d0ea0a00142397fa5230846abbf59d3af245ac01e5c1c0` |
-| **Last checked** | 2026-10-18 19:12:58 UTC |
-| **Last updated** | 2026-10-18 19:12:58 UTC |
+| **Version hash** | `4e1f3b15d29c9d56ae6e0c3521dc21f6e33532294e6ed583875a7c5d9fa2306b` |
+| **Last checked** | 2026-10-18 22:12:43 UTC |
+| **Last updated** | 2026-10-18 22:12:43 UTC |
 
 ## HSW Cipher Keys
 
 | Key | Value |
 |-----|-------|
-| encrypt\_key | `17000000ea000000a00000004c00000000000000f3000000f00000003c000000` |
-| decrypt\_key | `460000001b000000400000007b0000000f000000c00000003f00000033000000` |
-| n\_key | `540f94a16a2da38d6df424aa45b5e727de0602a758d4a841d6f1b8c953cbcb74` |
-| fingerprint\_blob\_key | `134c156880843d5af98f6577d0440049771ab1b35e35c12b86db8611e5d816bb` |
+| encrypt\_key | `b1000000a700000034000000de0000000000000030000000f3000000f3000000` |
+| decrypt\_key | `0900000067000000df00000086000000ff00000030000000c30000000f000000` |
+| n\_key | `f5f002bce822ccfa7a95d3c3af0d0d737c7d92e28fcfd4d2cb356c2d46dc79e5` |
+| fingerprint\_blob\_key | `ae17a2f69fb3013fca3f225313932a14fa017d5df30a092bb2f4c5e981a65989` |
 
 **Key descriptions:**
 
@@ -45,9 +45,9 @@ N-token:   AES-256-CTR, counter block = iv(12) || be32(counter)
 
 | Key Name | Value |
 |----------|-------|
-| n\_key | `8287b3f8ac675a4f9e4a78b5e449b699db63fe62778e82b32d058835d5477215` |
-| response\_decrypt\_key | `5b07d6af1ba8fed167d444cdaa1903a7265f655febc28a792f3345fdf4688e62` |
-| payload\_encrypt\_key | `95ea4e868e8b40b9c9f4d227857442e756a2c65db3aec59d5e632df42281c950` |
+| n\_key | `d829f7bd011db21fd8f8f8194eeaedc3749fad9f7f03bee477f0a9180fead517` |
+| response\_decrypt\_key | `1aa3e93f0f301977421f1633bc97be74a8fd375aa315f3a40b80d1f785c64fff` |
+| payload\_encrypt\_key | `7724596431e026361562bae1c709795df22fe2c660c0b912ceae10a8367b6fd7` |
 
 **HSJ wire format:** `ct(N) || tag(16) || iv(12) || 0x00`
 
