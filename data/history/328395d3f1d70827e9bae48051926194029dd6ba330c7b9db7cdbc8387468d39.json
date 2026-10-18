@@ -1,0 +1,15 @@
+{
+  "version": "328395d3f1d70827e9bae48051926194029dd6ba330c7b9db7cdbc8387468d39",
+  "last_checked": "2026-10-18T16:33:18.502Z",
+  "last_updated": "2026-10-18T16:33:18.502Z",
+  "hsw": {
+    "encrypt_key": null,
+    "decrypt_key": null,
+    "n_key": "b0e4f2d6a6d8cd39037c6ec3bab4c2191a827286722c222eeca742444dbb92ad",
+    "fingerprint_blob_key": "e80273cf20d3a94e29904578ccca1a1d9c22aa5d7dc761c825b7605e38f9f08c",
+    "extraction_method": "wasm_data_section_binary",
+    "shadow_memory": "a2b9ffa4c2a8aad9412f2b0d4936e4d2cc6c74de3cedfcb3a9678e2818f4d501ba2fb00facad6cb03d657ce13a9249ff1630c0f8be48790993ea2e5904cc1f68b0e4f2d6a6d8cd39037c6ec3bab4c2191a827286722c222eeca742444dbb92ad"
+  },
+  "hsj": null,
+  "archived_at": "2026-10-18T16:33:18.502Z"
+}
