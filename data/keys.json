@@ -1,21 +1,21 @@
 {
-  "version": "4e1f3b15d29c9d56ae6e0c3521dc21f6e33532294e6ed583875a7c5d9fa2306b",
-  "last_checked": "2026-10-18T22:12:43.319Z",
-  "last_updated": "2026-10-18T22:12:43.319Z",
+  "version": "a89a2651a82210f3a2af6721ccffb5c6d37b803c394a040808e58df85e9c9110",
+  "last_checked": "2026-10-19T00:45:46.881Z",
+  "last_updated": "2026-10-19T00:45:46.881Z",
   "hsw": {
-    "encrypt_key": "b1000000a700000034000000de0000000000000030000000f3000000f3000000",
-    "decrypt_key": "0900000067000000df00000086000000ff00000030000000c30000000f000000",
-    "n_key": "f5f002bce822ccfa7a95d3c3af0d0d737c7d92e28fcfd4d2cb356c2d46dc79e5",
-    "fingerprint_blob_key": "ae17a2f69fb3013fca3f225313932a14fa017d5df30a092bb2f4c5e981a65989",
+    "encrypt_key": "7b00000003000000340000006900000000000000fc000000c3000000cf000000",
+    "decrypt_key": "970000004e0000008d00000058000000ff000000cc00000030000000cf000000",
+    "n_key": "9ded86dbd1719dbb570ded3a1a2839df602df7147afa9655a97028a7c06140e7",
+    "fingerprint_blob_key": "e6b51c3e51fdc85c25541d91a80f7064d353964ec5c11329b44b57c21c6f0e8e",
     "extraction_method": "wasm_runtime_patching",
-    "shadow_memory": "0ccd3b9a1ed595fa8d9504da98ad38cd713e475c73be4be99a1caecf1fcb59f3be18c20e58b00d35be7e153b2e1b73819ee0a63a874f020903e4919839b01efbf5f002bce822ccfa7a95d3c3af0d0d737c7d92e28fcfd4d2cb356c2d46dc79e5",
+    "shadow_memory": "7507e7dc72f58568895f0a7b153a199d63b661a89b32f7244876b8e570beb7b321e23ae03d9412149e0dd9dacc95c1b236e281d4a7443ecef74b882d262581339ded86dbd1719dbb570ded3a1a2839df602df7147afa9655a97028a7c06140e7",
     "n_token_plaintext": null,
     "n_token_sample": null
   },
   "hsj": {
-    "n_key": "d829f7bd011db21fd8f8f8194eeaedc3749fad9f7f03bee477f0a9180fead517",
-    "response_decrypt_key": "1aa3e93f0f301977421f1633bc97be74a8fd375aa315f3a40b80d1f785c64fff",
-    "payload_encrypt_key": "7724596431e026361562bae1c709795df22fe2c660c0b912ceae10a8367b6fd7",
+    "n_key": "24051fbaa7ac82dd290676bf216c8054537b1e84030cc275e1d211a3ac0667b6",
+    "response_decrypt_key": "90124046370fce5ee9dce5b5c62c10de4512e7691212bfa79e6292dfc3425596",
+    "payload_encrypt_key": "bf5553c8c009ac4ed05d50753985cd8e3fb9cbb8056f8aa810631a094393f602",
     "cipher": "AES-256-GCM",
     "wire_format": "ct(N) || tag(16) || iv(12) || 0x00"
   }
