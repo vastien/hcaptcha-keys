@@ -2,9 +2,9 @@
 
 > Automatically extracted cipher key material for every hCaptcha build. Updated hourly via GitHub Actions.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-19_12%3A21%3A00_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-19_12%3A21%3A00_UTC-green)
-![Version](https://img.shields.io/badge/version-a099a810f5774cb6-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-19_18%3A40%3A53_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-19_18%3A40%3A53_UTC-green)
+![Version](https://img.shields.io/badge/version-cb9dca9bdb6bb065-lightgrey)
 
 ## ⚠️ Disclaimer
 
@@ -14,18 +14,18 @@ This repository is for **educational and security research** purposes only. Use 
 
 | Field | Value |
 |-------|-------|
-| **Version hash** | `a099a810f5774cb617085470978709e3fed07dafb9b030f6d32e31ed916d589c` |
-| **Last checked** | 2026-10-19 12:21:00 UTC |
-| **Last updated** | 2026-10-19 12:21:00 UTC |
+| **Version hash** | `cb9dca9bdb6bb0650a81de3fda48c6eb0e5f2f2787e3b7564182f19601f643d5` |
+| **Last checked** | 2026-10-19 18:40:53 UTC |
+| **Last updated** | 2026-10-19 18:40:53 UTC |
 
 ## HSW Cipher Keys
 
 | Key | Value |
 |-----|-------|
-| encrypt\_key | `a83bae08c16b8ba35852bd39f8f42015` |
-| decrypt\_key | `a58f325070ae0c774f73526908f4fa4e` |
-| n\_key | `1f9806d420a5fc4c9372b31ea99e88895e8fbbf4aac183445a11ca58858a0b80` |
-| fingerprint\_blob\_key | `1152939284cb4fd03ce358fedddcd4e32f6b78e42b593bfac38d2f433709d33b` |
+| encrypt\_key | `f47095d21cef4baa8f208145998bc84b` |
+| decrypt\_key | `560332241b78cf7f4120bfc1b59cb9c3` |
+| n\_key | `0289563b3309b018efdb8acfd4224ef6c618f6265e26aa9f7a5410dbd4a85691` |
+| fingerprint\_blob\_key | `cbbadb70cd2f6f8ba628cbae8e5e1b9fc699c9627d0d61bd2b0dfb156b084a5a` |
 
 **Key descriptions:**
 
@@ -45,9 +45,9 @@ N-token:   AES-256-CTR, counter block = iv(12) || be32(counter)
 
 | Key Name | Value |
 |----------|-------|
-| n\_key | `159c05dd95cb1c94398015101e210b62006de0986aea8c32435d2eb915c1fb30` |
-| response\_decrypt\_key | `448a94c655ecaccd7deaf21fc0e897c27bd6cdbdaa7db6303ebfdfd3eefdf7c1` |
-| payload\_encrypt\_key | `775a0496c83ec7d4cfcca45014c12960943b2adabbb97b791b7f6f2a775d793f` |
+| n\_key | `cfc516b9c93bf8be37cd6ce9708e802ea80b6c91033f16f8ac482e1d688724f3` |
+| response\_decrypt\_key | `ae76e998bfa1cb46fb48a3c9e8d04409b55a8776cab5fb4af44e99fc5092fdbe` |
+| payload\_encrypt\_key | `4117eaf62e2b60dd484ef935bb489e98c6c5e2d72142189ec8d588e3e61d3e50` |
 
 **HSJ wire format:** `ct(N) || tag(16) || iv(12) || 0x00`
 
@@ -55,7 +55,7 @@ N-token:   AES-256-CTR, counter block = iv(12) || be32(counter)
 
 ```javascript
 const data = await fetch(
-  'https://raw.githubusercontent.com/vastien/hcaptcha-keys/main/data/keys.json'
+  'https://raw.githubusercontent.com/vastien/hcaptcha-keys-tracker/main/data/keys.json'
 ).then(r => r.json());
 
 const nKey            = data.hsw.n_key;             // 64 hex chars (32 bytes)
