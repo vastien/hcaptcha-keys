@@ -2,9 +2,9 @@
 
 > Automatically extracted cipher key material for every hCaptcha build. Updated hourly via GitHub Actions.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-21_01%3A14%3A47_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-21_01%3A14%3A47_UTC-green)
-![Version](https://img.shields.io/badge/version-64b7403d12a5db11-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-21_06%3A59%3A38_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-21_06%3A59%3A38_UTC-green)
+![Version](https://img.shields.io/badge/version-c27ba394eff1c49e-lightgrey)
 
 ## ⚠️ Disclaimer
 
@@ -14,18 +14,18 @@ This repository is for **educational and security research** purposes only. Use 
 
 | Field | Value |
 |-------|-------|
-| **Version hash** | `64b7403d12a5db11b435eb012bd0a1c92837a4462a87c031b0a83362bfbbb60a` |
-| **Last checked** | 2026-10-21 01:14:47 UTC |
-| **Last updated** | 2026-10-21 01:14:47 UTC |
+| **Version hash** | `c27ba394eff1c49e06a90bcda77eae7eeccc23e3b8fe6a2733397b848fafa0b6` |
+| **Last checked** | 2026-10-21 06:59:38 UTC |
+| **Last updated** | 2026-10-21 06:59:38 UTC |
 
 ## HSW Cipher Keys
 
 | Key | Value |
 |-----|-------|
-| encrypt\_key | `3508c7f60a59338d4978e54984a1923a` |
-| decrypt\_key | `96080841db5c3227348ba1598f93ced9` |
-| n\_key | `5abe011f8fc0dfd6377401affca7180ff367e29d841b36c45c48ecd2e797cf03` |
-| fingerprint\_blob\_key | `4fcf401e4002b1fe84b464a28b6d2d5ec97032cca6bfff9c44aae461809c0b52` |
+| encrypt\_key | `de65a0d8fb58ec308bca995aa4626c09` |
+| decrypt\_key | `13133d7568a61013db526fcdd9e06f91` |
+| n\_key | `d1720ec95d8c3ee85331a5467d4d0772e2012328060073e32f47e5f089818e04` |
+| fingerprint\_blob\_key | `6196f601557d136aec6ce22c1d3756784df6bf83e579e4cc2893ba86eabb3042` |
 
 **Key descriptions:**
 
@@ -45,9 +45,9 @@ N-token:   AES-256-CTR, counter block = iv(12) || be32(counter)
 
 | Key Name | Value |
 |----------|-------|
-| n\_key | `01c3981c125ba35f0b0ccadb8b60268529dac24b81bd97d8fee149e822e755df` |
-| response\_decrypt\_key | `b434e21ad98dafa8ded6266751ed66f5b53f80af407856e78ba8d5ee767df8a0` |
-| payload\_encrypt\_key | `003cd036613097641e78ad44f1d21c69128b0326f9f018fbe918243760fdaaee` |
+| n\_key | `ab14b8ba07fac9ea53dd4dceb63395e70fc341d709d83d9a1a831e434db74771` |
+| response\_decrypt\_key | `cf3e318fdc89aa852ab2eb1ecb7c59605e04efec72d369278b050925b18b646d` |
+| payload\_encrypt\_key | `870a9df0ecae9c0e33bf729bdd0c223328b95e329c5552cc10de236a622aead2` |
 
 **HSJ wire format:** `ct(N) || tag(16) || iv(12) || 0x00`
 

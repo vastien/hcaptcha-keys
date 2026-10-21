@@ -1,21 +1,21 @@
 {
-  "version": "64b7403d12a5db11b435eb012bd0a1c92837a4462a87c031b0a83362bfbbb60a",
-  "last_checked": "2026-10-21T01:14:47.341Z",
-  "last_updated": "2026-10-21T01:14:47.341Z",
+  "version": "c27ba394eff1c49e06a90bcda77eae7eeccc23e3b8fe6a2733397b848fafa0b6",
+  "last_checked": "2026-10-21T06:59:38.823Z",
+  "last_updated": "2026-10-21T06:59:38.823Z",
   "hsw": {
-    "encrypt_key": "3508c7f60a59338d4978e54984a1923a",
-    "decrypt_key": "96080841db5c3227348ba1598f93ced9",
-    "n_key": "5abe011f8fc0dfd6377401affca7180ff367e29d841b36c45c48ecd2e797cf03",
-    "fingerprint_blob_key": "4fcf401e4002b1fe84b464a28b6d2d5ec97032cca6bfff9c44aae461809c0b52",
+    "encrypt_key": "de65a0d8fb58ec308bca995aa4626c09",
+    "decrypt_key": "13133d7568a61013db526fcdd9e06f91",
+    "n_key": "d1720ec95d8c3ee85331a5467d4d0772e2012328060073e32f47e5f089818e04",
+    "fingerprint_blob_key": "6196f601557d136aec6ce22c1d3756784df6bf83e579e4cc2893ba86eabb3042",
     "extraction_method": "wasm_runtime_patching",
-    "shadow_memory": "57985b4b61919372db8c20e2cf7eaae3316a73a0304ed0c1329d1af407217ac93504e552bef04dcdf332501198fd48b6ee31f6949d308f354902c0c30b0375e25abe011f8fc0dfd6377401affca7180ff367e29d841b36c45c48ecd2e797cf03",
+    "shadow_memory": "d9fb63c5d4b32aac4b909d95e42a4cb8999eae7e590d0ad850398a634f3be6dc9925a61a94b1b990d713a72de7bc2fe8d245251e17e74c54998124604e4d0a94d1720ec95d8c3ee85331a5467d4d0772e2012328060073e32f47e5f089818e04",
     "n_token_plaintext": null,
     "n_token_sample": null
   },
   "hsj": {
-    "n_key": "01c3981c125ba35f0b0ccadb8b60268529dac24b81bd97d8fee149e822e755df",
-    "response_decrypt_key": "b434e21ad98dafa8ded6266751ed66f5b53f80af407856e78ba8d5ee767df8a0",
-    "payload_encrypt_key": "003cd036613097641e78ad44f1d21c69128b0326f9f018fbe918243760fdaaee",
+    "n_key": "ab14b8ba07fac9ea53dd4dceb63395e70fc341d709d83d9a1a831e434db74771",
+    "response_decrypt_key": "cf3e318fdc89aa852ab2eb1ecb7c59605e04efec72d369278b050925b18b646d",
+    "payload_encrypt_key": "870a9df0ecae9c0e33bf729bdd0c223328b95e329c5552cc10de236a622aead2",
     "cipher": "AES-256-GCM",
     "wire_format": "ct(N) || tag(16) || iv(12) || 0x00"
   }
