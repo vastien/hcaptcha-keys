@@ -1,23 +1,38 @@
 {
   "version": "bdc9f497d606caf396e4b898b63bfb8e59a1cbd49ec6ec28a62a819845881921",
-  "last_checked": "2026-10-20T07:06:28.281Z",
-  "last_updated": "2026-10-20T07:06:28.281Z",
+  "last_checked": "2026-10-22T14:08:01.290Z",
+  "last_updated": "2026-10-22T14:08:01.290Z",
   "hsw": {
-    "encrypt_key": "54c9bba756e34b142ef911b69a632eca",
-    "decrypt_key": "806e5628401ddc2b90f2afb608702969",
-    "n_key": "cb5838c1950ed684ee4e8ce82333819a168df921cc14c3bffcee32d193357f25",
-    "fingerprint_blob_key": "e0abb0700d68bf7a7114c381917f5a167ebf3bab8f0c417fed2f5a0c0383b527",
-    "extraction_method": "wasm_runtime_patching",
-    "shadow_memory": "95de2fa282ae66a02cf8f91b250a60ed38a6468f0c1ae09e4e93f1c489d63149ab8926abfda7f0bdc93ea9fd30dd35310a585a8b58a23a1d6433a80d714923decb5838c1950ed684ee4e8ce82333819a168df921cc14c3bffcee32d193357f25",
-    "n_token_plaintext": null,
-    "n_token_sample": null
-  },
-  "hsj": {
-    "n_key": "e1c233ddbe5bffb8b3545118219a5505e477ee4940af1fa00e31a1073241897d",
-    "response_decrypt_key": "2bc4741b1e5e0c19ade4bfbb9c139e326760a7fa35afbbed5568ab24615a1eec",
-    "payload_encrypt_key": "e51fa5d9f43b00e52363e9476d615ad9df7c4414d14615b3be8d1c47bde73e51",
     "cipher": "AES-256-GCM",
-    "wire_format": "ct(N) || tag(16) || iv(12) || 0x00"
+    "request_key": "265c807bbf9d51400a2628cbd995b50fa350da364da2aa634540382d01224571",
+    "request_wire": "iv(12) || ct(N) || tag(16)",
+    "response_key": "bfeff811a834fc8d6ac7cb5fd5c9a66fdf854de79ff40b0aaf795e2d470f3070",
+    "response_wire": "iv(12) || ct(N) || tag(16)",
+    "verified": true,
+    "verification": "request_key: GCM-decrypting hsw(1, pt) under it returns pt. response_key: hsw(0, iv||GCM(key,iv,pt)||tag) returns pt. Both checked against this build's own WASM module.",
+    "extraction_method": "fixslice bitslice write interception + module oracle",
+    "bundle_sri": "sha256-35SgKsLeHMytIeZbcEmETWttQEZLguLoYpTNbjPGUFc=",
+    "bundle_sha256": "df94a02ac2de1cccad21e65b7049844d6b6d40464b82e2e86294cd6e33c65057",
+    "wasm_sha256": "6d0a4e039b4eb0470b15be44fb37b0bab6a785606acff7242d7bc0f56b75efa2",
+    "functions": {
+      "u32_writer": 1123,
+      "u16_writer": 745,
+      "u8_writer": 629,
+      "u64_writer": 197,
+      "bitslice": 959,
+      "aes_core": 831,
+      "hook_import": "a.M",
+      "hook_func": 38,
+      "hook_unused": false,
+      "fixslice_functions": [
+        831,
+        856,
+        959
+      ],
+      "accessor_count": 17
+    },
+    "extracted_at": "2026-10-22T14:08:01.290Z"
   },
-  "archived_at": "2026-10-20T07:06:28.281Z"
+  "hsj": null,
+  "archived_at": "2026-10-22T14:08:01.290Z"
 }

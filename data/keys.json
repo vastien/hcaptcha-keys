@@ -1,37 +1,37 @@
 {
-  "version": "e649efc4744281a6301a95d6d9ff8f7da1e0d2188c4a666eb09929ccc7d7277d",
-  "last_checked": "2026-10-22T13:58:26.078Z",
-  "last_updated": "2026-10-22T13:58:26.078Z",
+  "version": "3f5136d4ea4028ef462cae24dffaa77804704db2a3216fe139383eaa300fb6e5",
+  "last_checked": "2026-10-22T14:09:00.051Z",
+  "last_updated": "2026-10-22T14:09:00.051Z",
   "hsw": {
     "cipher": "AES-256-GCM",
-    "request_key": "7155f6ecfabc22c5a57d24657de65f397f71b89b25a968e18e28b2360dd944fa",
+    "request_key": "cf996468bb8797cba5ee5e276dcc81eda2073c3710797bd13bf13aff9b9baddc",
     "request_wire": "iv(12) || ct(N) || tag(16)",
-    "response_key": "e93abd674eea48703329af233ad4c9d08d9c9a2e11c1547747fe39963317ced9",
+    "response_key": "8b66dbf8550cbd6121ddf96f05d9f9241190912ea0b1959901147e83977ba066",
     "response_wire": "iv(12) || ct(N) || tag(16)",
     "verified": true,
     "verification": "request_key: GCM-decrypting hsw(1, pt) under it returns pt. response_key: hsw(0, iv||GCM(key,iv,pt)||tag) returns pt. Both checked against this build's own WASM module.",
     "extraction_method": "fixslice bitslice write interception + module oracle",
-    "bundle_sri": "sha256-uCuKwDizFLJLxLj1sTupebD98gL0hEC+ZZHsRdoINAU=",
-    "bundle_sha256": "b82b8ac038b314b24bc4b8f5b13ba979b0fdf202f48440be6591ec45da083405",
-    "wasm_sha256": "1e4b64e0a0ad7ceee5758e40cdc6c334bd2cf0c6eb23dfc9d623e52f9dcbe6a9",
+    "bundle_sri": "sha256-bUbkDP2vUvIU0WU2d7LFmaAeU0F9F06PAaFCn7JYtf4=",
+    "bundle_sha256": "6d46e40cfdaf52f214d1653677b2c599a01e53417d174e8f01a1429fb258b5fe",
+    "wasm_sha256": "bfe439190018e86d0cb7f4ea805aa5b7a35bf6550cd5ff3c6744a4f8b0b6ef03",
     "functions": {
-      "u32_writer": 734,
-      "u16_writer": 691,
-      "u8_writer": 1041,
-      "u64_writer": 524,
-      "bitslice": 234,
-      "aes_core": 1081,
-      "hook_import": "a.r",
-      "hook_func": 17,
+      "u32_writer": 197,
+      "u16_writer": 250,
+      "u8_writer": 848,
+      "u64_writer": 548,
+      "bitslice": 714,
+      "aes_core": 815,
+      "hook_import": "a.M",
+      "hook_func": 38,
       "hook_unused": false,
       "fixslice_functions": [
-        234,
-        412,
-        1081
+        391,
+        714,
+        815
       ],
       "accessor_count": 17
     },
-    "extracted_at": "2026-10-22T13:58:26.078Z"
+    "extracted_at": "2026-10-22T14:09:00.051Z"
   },
   "hsj": null
 }

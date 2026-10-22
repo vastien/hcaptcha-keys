@@ -1,21 +1,38 @@
 {
   "version": "328395d3f1d70827e9bae48051926194029dd6ba330c7b9db7cdbc8387468d39",
-  "last_checked": "2026-10-18T16:33:18.502Z",
-  "last_updated": "2026-10-18T16:33:18.502Z",
-  "archived_at": "2026-10-18T16:33:18.502Z",
-  "retracted": {
-    "at": "2026-10-22T13:59:18.000Z",
-    "reason": "The keys in this entry were never confirmed against the WASM module and are wrong. hsw's AES is the fixslice (bit-interleaved) soft backend, so the key is never 32 contiguous bytes in memory; the old extractor read a contiguous window out of a scratch region and published whatever was there. The n_key, fingerprint_blob_key and shadow_memory fields were worse than unconfirmed: the n-token is not encrypted under a recoverable key at all. The hsj values came from a heap-entropy scan with no oracle. Entries written by the current extractor carry verified: true and state the oracle that accepted them.",
-    "withdrawn_values": {
-      "hsw": {
-        "encrypt_key": null,
-        "decrypt_key": null,
-        "n_key": "b0e4f2d6a6d8cd39037c6ec3bab4c2191a827286722c222eeca742444dbb92ad",
-        "fingerprint_blob_key": "e80273cf20d3a94e29904578ccca1a1d9c22aa5d7dc761c825b7605e38f9f08c",
-        "extraction_method": "wasm_data_section_binary",
-        "shadow_memory": "a2b9ffa4c2a8aad9412f2b0d4936e4d2cc6c74de3cedfcb3a9678e2818f4d501ba2fb00facad6cb03d657ce13a9249ff1630c0f8be48790993ea2e5904cc1f68b0e4f2d6a6d8cd39037c6ec3bab4c2191a827286722c222eeca742444dbb92ad"
-      },
-      "hsj": null
-    }
-  }
+  "last_checked": "2026-10-22T14:06:50.859Z",
+  "last_updated": "2026-10-22T14:06:50.859Z",
+  "hsw": {
+    "cipher": "AES-256-GCM",
+    "request_key": "cdfb8bdf26e557eb02f2cf117ac8bbaf3ce6b4bfb8fe2f127b9b3595a3757e26",
+    "request_wire": "iv(12) || ct(N) || tag(16)",
+    "response_key": "9525fdc758fee45de7287088906138ab60c30a3ae9a9d103c191cb21c451d2c4",
+    "response_wire": "iv(12) || ct(N) || tag(16)",
+    "verified": true,
+    "verification": "request_key: GCM-decrypting hsw(1, pt) under it returns pt. response_key: hsw(0, iv||GCM(key,iv,pt)||tag) returns pt. Both checked against this build's own WASM module.",
+    "extraction_method": "fixslice bitslice write interception + module oracle",
+    "bundle_sri": "sha256-Fe9TPp9euZ+lIy+Bmqfzqvvgd/Vl+YdhnJEQsy0j/LI=",
+    "bundle_sha256": "15ef533e9f5eb99fa5232f819aa7f3aafbe077f565f987619c9110b32d23fcb2",
+    "wasm_sha256": "a378be5a4ee9ab18dd5d2b67ddf7b98b0ee8a8c458fd5bb9979818ce1967f43f",
+    "functions": {
+      "u32_writer": 719,
+      "u16_writer": 1113,
+      "u8_writer": 438,
+      "u64_writer": 349,
+      "bitslice": 191,
+      "aes_core": 450,
+      "hook_import": "a.h",
+      "hook_func": 7,
+      "hook_unused": false,
+      "fixslice_functions": [
+        191,
+        450,
+        1121
+      ],
+      "accessor_count": 17
+    },
+    "extracted_at": "2026-10-22T14:06:50.859Z"
+  },
+  "hsj": null,
+  "archived_at": "2026-10-22T14:06:50.859Z"
 }
