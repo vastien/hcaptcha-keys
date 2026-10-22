@@ -3,8 +3,8 @@
 > The two AES-256-GCM keys of each hCaptcha `hsw.js` build, extracted from the
 > build's own WASM module and confirmed against it before being published.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-22_14%3A09%3A00_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-22_14%3A09%3A00_UTC-green)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-22_14%3A24%3A36_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-22_14%3A24%3A36_UTC-green)
 ![Build](https://img.shields.io/badge/build-3f5136d4ea4028ef-lightgrey)
 ![Keys confirmed](https://img.shields.io/badge/keys_confirmed-both-brightgreen)
 
@@ -32,8 +32,8 @@ claim is that bundle's SRI hash. Keys here are indexed by that build hash.
 | **Bundle** | `https://newassets.hcaptcha.com/c/3f5136d4ea4028ef462cae24dffaa77804704db2a3216fe139383eaa300fb6e5/hsw.js` |
 | **Bundle SRI** | `sha256-bUbkDP2vUvIU0WU2d7LFmaAeU0F9F06PAaFCn7JYtf4=` |
 | **Runtime WASM sha256** | `bfe439190018e86d0cb7f4ea805aa5b7a35bf6550cd5ff3c6744a4f8b0b6ef03` |
-| **Last checked** | 2026-10-22 14:09:00 UTC |
-| **Last updated** | 2026-10-22 14:09:00 UTC |
+| **Last checked** | 2026-10-22 14:24:36 UTC |
+| **Last updated** | 2026-10-22 14:24:36 UTC |
 
 ## HSW keys
 
@@ -62,7 +62,8 @@ confirmed fails the run and leaves the previous data untouched.
 ## The n-token has no key
 
 Earlier versions of this repository published an `n_key` and a
-`fingerprint_blob_key`. Both have been removed: they were wrong. The n-token is
+`fingerprint_blob_key`, for hsw and for hsj. All of them have been removed:
+they were wrong. The n-token is
 **not** encrypted under a recoverable key at all — it is a deterministic
 pipeline (a 31-bit repack, five modular passes and a word rotation, XORed
 against a fixed keystream with no key, nonce or per-call entropy). There is no
@@ -106,6 +107,25 @@ build**. The extractor re-derives them from scratch every run.
 | fixslice bitslice | `714` |
 | AES core | `815` |
 | hook import | `a.M (func 38)` |
+
+## HSJ keys
+
+`hsj.js` is the pure-JavaScript build of the same module, served instead of the
+WASM one to clients that cannot run it. It uses the **same two keys**, and that
+is measured rather than assumed — they are extracted from `hsj` and confirmed
+through `hsj`'s own crypto, with no reference to the WASM side:
+
+~~~
+request_key  K  is accepted iff  GCM-open(K, hsj(1, pt))          == pt
+response_key K  is accepted iff  hsj(0, iv || GCM(K,iv,pt) || tag) == pt
+~~~
+
+| Key | Value | Same as hsw |
+|-----|-------|-------------|
+| request\_key | `cf996468bb8797cba5ee5e276dcc81eda2073c3710797bd13bf13aff9b9baddc` | yes |
+| response\_key | `8b66dbf8550cbd6121ddf96f05d9f9241190912ea0b1959901147e83977ba066` | yes |
+
+So one keyring covers a build whichever bundle a client is served.
 
 ## History
 

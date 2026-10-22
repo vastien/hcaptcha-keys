@@ -1,7 +1,7 @@
 {
   "version": "d3f70ab8f47a9643cc64c34f0eccc9e601f10eb04939f0d4562bfa92b8977cff",
-  "last_checked": "2026-10-22T14:08:18.178Z",
-  "last_updated": "2026-10-22T14:08:18.178Z",
+  "last_checked": "2026-10-22T14:23:46.401Z",
+  "last_updated": "2026-10-22T14:23:46.401Z",
   "hsw": {
     "cipher": "AES-256-GCM",
     "request_key": "a103a8dec53e1dd0aab2aacb51b9baf47560a4e84be43cbac8c209fee70352ce",
@@ -31,8 +31,33 @@
       ],
       "accessor_count": 17
     },
-    "extracted_at": "2026-10-22T14:08:18.178Z"
+    "extracted_at": "2026-10-22T14:23:46.401Z"
   },
-  "hsj": null,
-  "archived_at": "2026-10-22T14:08:18.178Z"
+  "hsj": {
+    "cipher": "AES-256-GCM",
+    "request_key": "a103a8dec53e1dd0aab2aacb51b9baf47560a4e84be43cbac8c209fee70352ce",
+    "request_wire": "iv(12) || ct(N) || tag(16)",
+    "response_key": "a2cc368df79ea0094f03f6e60549a6f32928f4a48702652549ec21d4b30a6203",
+    "response_wire": "iv(12) || ct(N) || tag(16)",
+    "verified": true,
+    "matches_hsw": true,
+    "verification": "request_key: GCM-decrypting hsj(1, pt) under it returns pt. response_key: hsj(0, iv||GCM(key,iv,pt)||tag) returns pt. Checked against hsj's own code, independently of hsw.",
+    "extraction_method": "fixslice bitslice write interception + hsj oracle",
+    "bundle_sha256": "79ac74f8f6444e002b71c943763cfb5712e1a7bd2864c8b85ce1d21b15465a62",
+    "functions": {
+      "u32_writer": "gx",
+      "u16_writer": "NE",
+      "u8_writer": "oJ",
+      "f32_writer": "fO",
+      "bitslice_candidates": [
+        "JA",
+        "ZJ",
+        "aYA"
+      ],
+      "aes_core": "ZJ",
+      "accessor_count": 11
+    },
+    "extracted_at": "2026-10-22T14:23:46.401Z"
+  },
+  "archived_at": "2026-10-22T14:23:46.401Z"
 }
