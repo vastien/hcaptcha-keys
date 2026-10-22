@@ -107,57 +107,13 @@ build**. The extractor re-derives them from scratch every run.
 | AES core | `815` |
 | hook import | `a.M (func 38)` |
 
-## Running the extractor yourself
-
-The extractor lives in [vastien/hcaptcha-keys-tracker](https://github.com/vastien/hcaptcha-keys-tracker).
-It needs Node 18+ and [wabt](https://github.com/WebAssembly/wabt) (`wasm2wat`, `wat2wasm`).
-
-```bash
-node src/index.js                                   # the build hCaptcha is serving now
-node src/index.js --version <64-hex> --history-only  # backfill an older build
-node src/index.js --dry-run                          # extract and print, write nothing
-node test/regression.js                              # check it against known builds
-```
-
-A run takes about five seconds. The full method, and the traps that each cost
-hours, are written up in
-[METHOD.md](https://github.com/vastien/hcaptcha-keys-tracker/blob/main/METHOD.md).
-
-### How the keys are found, in short
-
-1. Fetch `hsw.js`. The base64 WASM blob inside it is a ~60 KB stub — the real
-   ~980 KB module is assembled at runtime, so the bundle is loaded in plain Node
-   over a small mocked browser surface and `WebAssembly.instantiate` is hooked to
-   dump the module. That also leaves `hsw(0,..)` and `hsw(1,..)` callable, which
-   is where the oracle comes from.
-2. Disassemble, and find this build's functions **structurally** — never by
-   index, since no index survives a rotation. Memory accessors are the functions
-   containing both `i32.const 320; i32.div_u` and `i32.const 320; i32.rem_u`,
-   classified by signature; the fixslice functions are the ones containing the
-   bit-transposition constants `1431655765`, `858993459`, `252645135`,
-   `-252645136`.
-3. Patch the u32 writer to report every de-obfuscated `(addr, value)` on entry,
-   and tag the `bitslice` function's entry so the write log can be segmented per
-   invocation. Reporting goes through an existing `(i32,i32,i32)->()` import,
-   tagged with a magic argument — adding an import would renumber every defined
-   function and invalidate every `call N`.
-4. Each `bitslice` invocation's first 8 words are one bitsliced 16-byte block.
-   `inv_bitslice` on them returns two identical halves, and two successive such
-   values are `key[0:16]` then `key[16:32]`.
-5. Confirm against the module, and publish only what passes.
-
-The key is never 32 contiguous bytes anywhere, and it never reaches linear
-memory either — the scratch region is reused before the call returns, so
-scanning the final memory image finds nothing. That is why interception, rather
-than searching, is the only thing that works here.
-
 ## History
 
 Every build's confirmed keys are archived in [data/history/](data/history/).
 
-Entries from before this method worked carry a `retracted` block instead of
-keys. Their values were never confirmed against the module and are wrong; they
-are kept, out of the way, as a record of what was once published.
+Every entry has been confirmed against its own build's module. Earlier
+unconfirmed values that were once published here have been replaced, not
+amended — if an entry is present, its keys passed the checks above.
 
 ## License
 
