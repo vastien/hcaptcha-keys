@@ -1,7 +1,8 @@
 # hCaptcha HSW Key Tracker
 
 > The two AES-256-GCM keys of each hCaptcha `hsw.js` build, extracted from the
-> build's own WASM module and confirmed against it before being published.
+> build's own WASM module and confirmed against it before being published — plus
+> the AES-128-CBC key that build seals its `fingerprint_blob` with.
 
 ![Last checked](https://img.shields.io/badge/last_checked-2026-10-22_23%3A52%3A22_UTC-blue)
 ![Last updated](https://img.shields.io/badge/last_updated-2026-10-22_23%3A52%3A22_UTC-green)
@@ -59,15 +60,71 @@ response_key K  is accepted iff  hsw(0, iv || GCM(K,iv,pt) || tag) == pt
 A candidate that fails is discarded, and a build where neither key can be
 confirmed fails the run and leaves the previous data untouched.
 
-## The n-token has no key
+## The n-token has no key, but its `fingerprint_blob` does
 
-Earlier versions of this repository published an `n_key` and a
-`fingerprint_blob_key`, for hsw and for hsj. All of them have been removed:
-they were wrong. The n-token is
-**not** encrypted under a recoverable key at all — it is a deterministic
-pipeline (a 31-bit repack, five modular passes and a word rotation, XORed
-against a fixed keystream with no key, nonce or per-call entropy). There is no
-n-token key to publish, so this repository no longer pretends there is one.
+The n-token itself is **not** encrypted under a recoverable key — it is a
+deterministic pipeline (a 31-bit repack, five modular passes and a word
+rotation, XORed against a fixed keystream with no key, nonce or per-call
+entropy). The `n_key` earlier versions of this repository published was wrong
+and stays removed.
+
+One field *inside* the decoded payload is keyed, though: `fingerprint_blob`,
+which the bundle seals separately before the payload is encoded. That key is
+real, per build, and recoverable — see below.
+
+## Blob keys (`fingerprint_blob`)
+
+Cipher: **AES-128-CBC** with PKCS#7 padding, sealed in the bundle's plain
+**JavaScript**, not in the WASM module. Wire format:
+
+~~~
+<base64 iv> "." <base64 ciphertext>      # IV is 16 bytes from crypto.getRandomValues
+~~~
+
+Plaintext is JSON: `[[event_id, value], ...]`, the behavioural event list.
+
+| Build | Key | Last round key |
+|-------|-----|----------------|
+| `e649efc4744281a6` | `72a3ed76fa5cf8a95c030a623250fbc3` | `8621097b76d58e0a6296be7e274803ea` |
+| `425954adc4d740af` | `d9d0575a50d6aaad73b2c8b1e4714475` | `487c83cfbae2030b243ecefa86a8e12f` |
+
+Full hashes and per-build detail are in [data/history/](data/history/), under a
+`blob` key alongside `hsw` and `hsj`. A build whose blob key is known but whose
+hsw/hsj keys were never captured gets a history entry with only the `blob`
+section.
+
+These keys are per build like every other key here, so this table needs a new
+row every rotation — several a day.
+
+### How a blob key is recovered
+
+The AES is a T-table implementation whose round keys are inlined as arithmetic
+over the obfuscator's state variables: there is no key schedule and no 16
+contiguous key bytes anywhere in memory. So the key is read out rather than
+found:
+
+1. Blank the five T-tables at seal time (`Px = axX = aNc = aWB = aqo = new
+   Uint32Array(256)` on build `e649efc4`; the names rotate with the bundle).
+   Every round then collapses to `0 ^ roundkey`, so the block function returns
+   the **last round key** for any input and the whole CBC chain emits that one
+   block repeated.
+2. Read that block off the token's blob — that is `last_round_key` above.
+3. Invert the AES-128 key schedule to get the master key.
+
+`last_round_key` is published so the derivation can be re-checked without
+re-running step 1.
+
+### How each one is confirmed
+
+Two independent checks per build, and nothing is published unless both pass:
+
+- the plaintext it produces is byte-identical to the plaintext tapped out of
+  the same run's `BlobEncryption.encrypt`;
+- it opens an **earlier, uninstrumented** run's `fingerprint_blob` with valid
+  PKCS#7 padding.
+
+For `e649efc4` it also decrypts a real Chrome browser's n-token to 8,336 bytes
+of valid JSON.
 
 ## Programmatic access
 
@@ -91,6 +148,16 @@ const ct = blob.subarray(12, blob.length - 16);
 const d = crypto.createDecipheriv('aes-256-gcm', responseKey, iv);
 d.setAuthTag(tag);
 const plaintext = Buffer.concat([d.update(ct), d.final()]);  // msgpack, not JSON
+```
+
+```javascript
+// decrypt a fingerprint_blob: "<base64 iv>.<base64 ct>", AES-128-CBC
+const blobKey = Buffer.from('72a3ed76fa5cf8a95c030a623250fbc3', 'hex');  // 16 bytes, build e649efc4
+const [ivB64, ctB64] = fingerprintBlob.split('.');
+const d2 = crypto.createDecipheriv('aes-128-cbc', blobKey, Buffer.from(ivB64, 'base64'));
+const events = JSON.parse(
+  Buffer.concat([d2.update(Buffer.from(ctB64, 'base64')), d2.final()]).toString()
+);  // [[event_id, value], ...]
 ```
 
 ## This build's function mapping
@@ -131,7 +198,8 @@ So one keyring covers a build whichever bundle a client is served.
 
 Every build's confirmed keys are archived in [data/history/](data/history/).
 
-Every entry has been confirmed against its own build's module. Earlier
+Every entry has been confirmed against its own build: the hsw/hsj keys against
+its WASM module, a `blob` key against the bundle's own JavaScript. Earlier
 unconfirmed values that were once published here have been replaced, not
 amended — if an entry is present, its keys passed the checks above.
 
