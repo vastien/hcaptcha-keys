@@ -1,11 +1,12 @@
 # hCaptcha HSW Key Tracker
 
 > The two AES-256-GCM keys of each hCaptcha `hsw.js` build, extracted from the
-> build's own WASM module and confirmed against it before being published.
+> build's own WASM module and confirmed against it before being published — plus
+> the AES-128-CBC key that build seals its `fingerprint_blob` with.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-23_14%3A45%3A46_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-23_14%3A45%3A46_UTC-green)
-![Build](https://img.shields.io/badge/build-d1046a29df512d65-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-23_15%3A50%3A33_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-23_15%3A50%3A33_UTC-green)
+![Build](https://img.shields.io/badge/build-d8e9e735f133a3bd-lightgrey)
 ![Keys confirmed](https://img.shields.io/badge/keys_confirmed-both-brightgreen)
 
 ## ⚠️ Disclaimer
@@ -28,12 +29,12 @@ claim is that bundle's SRI hash. Keys here are indexed by that build hash.
 
 | Field | Value |
 |-------|-------|
-| **Build** | `d1046a29df512d65198af3c00cc014fdad97b30e258d8dcb4cb06e0dfee3e363` |
-| **Bundle** | `https://newassets.hcaptcha.com/c/d1046a29df512d65198af3c00cc014fdad97b30e258d8dcb4cb06e0dfee3e363/hsw.js` |
-| **Bundle SRI** | `sha256-bC3VAZAbIz9f3+mSCBQBK3oH9uLwBO4lSWyro6A4QJY=` |
-| **Runtime WASM sha256** | `ff09bd957863c340f4a8bf0409a3cd261aa63f0bf49d034d6181f78768ff990b` |
-| **Last checked** | 2026-10-23 14:45:46 UTC |
-| **Last updated** | 2026-10-23 14:45:46 UTC |
+| **Build** | `d8e9e735f133a3bd1e25ac82c98395328ee5dbb4de7c894bc97d28a2042fdf68` |
+| **Bundle** | `https://newassets.hcaptcha.com/c/d8e9e735f133a3bd1e25ac82c98395328ee5dbb4de7c894bc97d28a2042fdf68/hsw.js` |
+| **Bundle SRI** | `sha256-woWpBlWtNLuYhSHKmDXm+fqtLMDv2fcNTkHEfgyFtEo=` |
+| **Runtime WASM sha256** | `fa186575c9befc2ef367fa75287e7f31606f0b22c9b94f3ebaaf07f473c6710d` |
+| **Last checked** | 2026-10-23 15:50:33 UTC |
+| **Last updated** | 2026-10-23 15:50:33 UTC |
 
 ## HSW keys
 
@@ -42,8 +43,8 @@ Cipher: **AES-256-GCM**. Wire format both ways:
 
 | Key | Value | What it is for |
 |-----|-------|----------------|
-| request\_key | `5beaf799c515d571319d676201b456b66f09eca0220960b0a7ffb84dbd9596f3` | Encrypts the outbound request body — the key `hsw(1, plaintext)` uses |
-| response\_key | `2c377b72ff63941e9dd254dc2391fe2680af5dde19686b0402d44574fa52f7ad` | Decrypts the `/getcaptcha` response — the key `hsw(0, blob)` uses |
+| request\_key | `83dee5c3a0505e0938cea2156cfb31f22bef328bac1b4c77ff26f09a080693a3` | Encrypts the outbound request body — the key `hsw(1, plaintext)` uses |
+| response\_key | `d4bc73986a08cdf0cc734e80157f4cb719a99bfa246c15c45408b9ebe3e8a1fa` | Decrypts the `/getcaptcha` response — the key `hsw(0, blob)` uses |
 
 They are **two different keys**, and neither one works in place of the other.
 
@@ -59,15 +60,70 @@ response_key K  is accepted iff  hsw(0, iv || GCM(K,iv,pt) || tag) == pt
 A candidate that fails is discarded, and a build where neither key can be
 confirmed fails the run and leaves the previous data untouched.
 
-## The n-token has no key
+## The n-token has no key, but its `fingerprint_blob` does
 
-Earlier versions of this repository published an `n_key` and a
-`fingerprint_blob_key`, for hsw and for hsj. All of them have been removed:
-they were wrong. The n-token is
-**not** encrypted under a recoverable key at all — it is a deterministic
-pipeline (a 31-bit repack, five modular passes and a word rotation, XORed
-against a fixed keystream with no key, nonce or per-call entropy). There is no
-n-token key to publish, so this repository no longer pretends there is one.
+The n-token itself is **not** encrypted under a recoverable key — it is a
+deterministic pipeline (a 31-bit repack, five modular passes and a word
+rotation, XORed against a fixed keystream with no key, nonce or per-call
+entropy). The `n_key` earlier versions of this repository published was wrong
+and stays removed.
+
+One field *inside* the decoded payload is keyed, though: `fingerprint_blob`,
+which the bundle seals separately before the payload is encoded. That key is
+real, per build, and recoverable — see below.
+
+## Blob keys (`fingerprint_blob`)
+
+Cipher: **AES-128-CBC** with PKCS#7 padding, sealed in the bundle's plain
+**JavaScript**, not in the WASM module. Wire format:
+
+~~~
+<base64 iv> "." <base64 ciphertext>      # IV is 16 bytes from crypto.getRandomValues
+~~~
+
+Plaintext is JSON: `[[event_id, value], ...]`, the behavioural event list.
+
+| Build | Key | Last round key |
+|-------|-----|----------------|
+| `425954adc4d740af` | `d9d0575a50d6aaad73b2c8b1e4714475` | `487c83cfbae2030b243ecefa86a8e12f` |
+| `e649efc4744281a6` | `72a3ed76fa5cf8a95c030a623250fbc3` | `8621097b76d58e0a6296be7e274803ea` |
+
+Full hashes and per-build detail are in [data/history/](data/history/), under a
+`blob` key alongside `hsw` and `hsj`. A build whose blob key is known but whose
+hsw/hsj keys were never captured gets a history entry with only the `blob`
+section.
+
+These keys are per build like every other key here, so this table needs a new
+row every rotation — several a day. Unlike the hsw and hsj keys, a blob key is
+**not** re-derived by the hourly run: each row was recovered by hand and is
+carried forward from the archive.
+
+### How a blob key is recovered
+
+The AES is a T-table implementation whose round keys are inlined as arithmetic
+over the obfuscator's state variables: there is no key schedule and no 16
+contiguous key bytes anywhere in memory. So the key is read out rather than
+found:
+
+1. Blank the five T-tables at seal time (`Px = axX = aNc = aWB = aqo = new
+   Uint32Array(256)` on build `e649efc4`; the names rotate with the bundle).
+   Every round then collapses to `0 ^ roundkey`, so the block function returns
+   the **last round key** for any input and the whole CBC chain emits that one
+   block repeated.
+2. Read that block off the token's blob — that is `last_round_key` above.
+3. Invert the AES-128 key schedule to get the master key.
+
+`last_round_key` is published so the derivation can be re-checked without
+re-running step 1.
+
+### How each one is confirmed
+
+Two independent checks per build, and nothing is published unless both pass:
+
+- the plaintext it produces is byte-identical to the plaintext tapped out of
+  the same run's `BlobEncryption.encrypt`;
+- it opens an **earlier, uninstrumented** run's `fingerprint_blob` with valid
+  PKCS#7 padding.
 
 ## Programmatic access
 
@@ -93,6 +149,16 @@ d.setAuthTag(tag);
 const plaintext = Buffer.concat([d.update(ct), d.final()]);  // msgpack, not JSON
 ```
 
+```javascript
+// decrypt a fingerprint_blob: "<base64 iv>.<base64 ct>", AES-128-CBC
+const blobKey = Buffer.from('d9d0575a50d6aaad73b2c8b1e4714475', 'hex');  // 16 bytes, build 425954ad
+const [ivB64, ctB64] = fingerprintBlob.split('.');
+const d2 = crypto.createDecipheriv('aes-128-cbc', blobKey, Buffer.from(ivB64, 'base64'));
+const events = JSON.parse(
+  Buffer.concat([d2.update(Buffer.from(ctB64, 'base64')), d2.final()]).toString()
+);  // [[event_id, value], ...]
+```
+
 ## This build's function mapping
 
 Recorded for reference only — **these indices are worthless on any other
@@ -100,13 +166,13 @@ build**. The extractor re-derives them from scratch every run.
 
 | Role | Index |
 |------|-------|
-| u32 writer | `455` |
-| u16 writer | `523` |
-| u8 writer | `299` |
-| u64 writer | `802` |
-| fixslice bitslice | `822` |
-| AES core | `1142` |
-| hook import | `a.D (func 29)` |
+| u32 writer | `503` |
+| u16 writer | `799` |
+| u8 writer | `1128` |
+| u64 writer | `991` |
+| fixslice bitslice | `621` |
+| AES core | `419` |
+| hook import | `a.B (func 27)` |
 
 ## HSJ keys
 
@@ -122,8 +188,8 @@ response_key K  is accepted iff  hsj(0, iv || GCM(K,iv,pt) || tag) == pt
 
 | Key | Value | Same as hsw |
 |-----|-------|-------------|
-| request\_key | `5beaf799c515d571319d676201b456b66f09eca0220960b0a7ffb84dbd9596f3` | yes |
-| response\_key | `2c377b72ff63941e9dd254dc2391fe2680af5dde19686b0402d44574fa52f7ad` | yes |
+| request\_key | `83dee5c3a0505e0938cea2156cfb31f22bef328bac1b4c77ff26f09a080693a3` | yes |
+| response\_key | `d4bc73986a08cdf0cc734e80157f4cb719a99bfa246c15c45408b9ebe3e8a1fa` | yes |
 
 So one keyring covers a build whichever bundle a client is served.
 
@@ -131,7 +197,8 @@ So one keyring covers a build whichever bundle a client is served.
 
 Every build's confirmed keys are archived in [data/history/](data/history/).
 
-Every entry has been confirmed against its own build's module. Earlier
+Every entry has been confirmed against its own build: the hsw/hsj keys against
+its WASM module, a `blob` key against the bundle's own JavaScript. Earlier
 unconfirmed values that were once published here have been replaced, not
 amended — if an entry is present, its keys passed the checks above.
 
