@@ -59,5 +59,19 @@
     },
     "extracted_at": "2026-10-22T14:23:59.168Z"
   },
+  "blob": {
+    "cipher": "AES-128-CBC",
+    "padding": "PKCS#7",
+    "key": "72a3ed76fa5cf8a95c030a623250fbc3",
+    "last_round_key": "8621097b76d58e0a6296be7e274803ea",
+    "wire": "base64(iv(16)) + \".\" + base64(ct(N)), IV is 16 bytes from crypto.getRandomValues",
+    "field": "fingerprint_blob, inside the n-token payload",
+    "plaintext": "JSON, [[event_id, value], ...]",
+    "sealed_in": "bundle JavaScript, not the WASM module",
+    "verified": true,
+    "verification": "Byte-identical to the plaintext tapped out of the same run's BlobEncryption.encrypt, and it opens an earlier uninstrumented run's fingerprint_blob with valid PKCS#7 padding. Also decrypts a real Chrome browser's n-token from this build to 8,336 bytes of valid JSON.",
+    "extraction_method": "blank the five T-tables at seal time so the block function returns the last round key for any input, read it off the emitted blob, then invert the AES-128 key schedule",
+    "extracted_at": "2026-10-22T18:40:00.000Z"
+  },
   "archived_at": "2026-10-22T14:23:59.168Z"
 }

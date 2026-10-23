@@ -1,0 +1,21 @@
+{
+  "version": "425954adc4d740af0fa562ac9a9975f830db5e2ea3eee1cbdd03e76724fd5809",
+  "last_checked": "2026-10-22T18:40:00.000Z",
+  "last_updated": "2026-10-22T18:40:00.000Z",
+  "note": "Blob key only. This build's hsw/hsj AES-256-GCM keys were never captured, so no hsw or hsj section is present.",
+  "blob": {
+    "cipher": "AES-128-CBC",
+    "padding": "PKCS#7",
+    "key": "d9d0575a50d6aaad73b2c8b1e4714475",
+    "last_round_key": "487c83cfbae2030b243ecefa86a8e12f",
+    "wire": "base64(iv(16)) + \".\" + base64(ct(N)), IV is 16 bytes from crypto.getRandomValues",
+    "field": "fingerprint_blob, inside the n-token payload",
+    "plaintext": "JSON, [[event_id, value], ...]",
+    "sealed_in": "bundle JavaScript, not the WASM module",
+    "verified": true,
+    "verification": "Byte-identical to the plaintext tapped out of the same run's BlobEncryption.encrypt, and it opens an earlier uninstrumented run's fingerprint_blob with valid PKCS#7 padding.",
+    "extraction_method": "blank the five T-tables at seal time so the block function returns the last round key for any input, read it off the emitted blob, then invert the AES-128 key schedule",
+    "extracted_at": "2026-10-22T18:40:00.000Z"
+  },
+  "archived_at": "2026-10-22T18:40:00.000Z"
+}
