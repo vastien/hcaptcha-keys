@@ -69,8 +69,8 @@
     "plaintext": "JSON, [[event_id, value], ...]",
     "sealed_in": "bundle JavaScript, not the WASM module",
     "verified": true,
-    "verification": "Byte-identical to the plaintext tapped out of the same run's BlobEncryption.encrypt, and it opens an earlier uninstrumented run's fingerprint_blob with valid PKCS#7 padding. Also decrypts a real Chrome browser's n-token from this build to 8,336 bytes of valid JSON.",
-    "extraction_method": "blank the five T-tables at seal time so the block function returns the last round key for any input, read it off the emitted blob, then invert the AES-128 key schedule",
+    "verification": "Opens a fingerprint_blob from a separate run of this build to a well-formed plaintext: valid PKCS#7 padding and a JSON event list. Also opens a real Chrome browser's n-token from this build, 8,336 bytes of valid JSON.",
+    "extraction_method": "T-table collapse + key-schedule inversion",
     "extracted_at": "2026-10-22T18:40:00.000Z"
   },
   "archived_at": "2026-10-22T14:23:59.168Z"

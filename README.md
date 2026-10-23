@@ -4,9 +4,9 @@
 > build's own WASM module and confirmed against it before being published — plus
 > the AES-128-CBC key that build seals its `fingerprint_blob` with.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-23_15%3A50%3A33_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-23_15%3A50%3A33_UTC-green)
-![Build](https://img.shields.io/badge/build-d8e9e735f133a3bd-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-23_15%3A56%3A58_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-23_15%3A56%3A58_UTC-green)
+![Build](https://img.shields.io/badge/build-7bd3caf57b8e80d5-lightgrey)
 ![Keys confirmed](https://img.shields.io/badge/keys_confirmed-both-brightgreen)
 
 ## ⚠️ Disclaimer
@@ -29,12 +29,12 @@ claim is that bundle's SRI hash. Keys here are indexed by that build hash.
 
 | Field | Value |
 |-------|-------|
-| **Build** | `d8e9e735f133a3bd1e25ac82c98395328ee5dbb4de7c894bc97d28a2042fdf68` |
-| **Bundle** | `https://newassets.hcaptcha.com/c/d8e9e735f133a3bd1e25ac82c98395328ee5dbb4de7c894bc97d28a2042fdf68/hsw.js` |
-| **Bundle SRI** | `sha256-woWpBlWtNLuYhSHKmDXm+fqtLMDv2fcNTkHEfgyFtEo=` |
-| **Runtime WASM sha256** | `fa186575c9befc2ef367fa75287e7f31606f0b22c9b94f3ebaaf07f473c6710d` |
-| **Last checked** | 2026-10-23 15:50:33 UTC |
-| **Last updated** | 2026-10-23 15:50:33 UTC |
+| **Build** | `7bd3caf57b8e80d5ad9068566fb41872ee3cb64390d761a8aed9e0d5093abaf2` |
+| **Bundle** | `https://newassets.hcaptcha.com/c/7bd3caf57b8e80d5ad9068566fb41872ee3cb64390d761a8aed9e0d5093abaf2/hsw.js` |
+| **Bundle SRI** | `sha256-whhv2/AeoN7tT0BrynC7nSvo3XcUHze9Nk7zyVbpJzE=` |
+| **Runtime WASM sha256** | `f092980829bcf8bb6947699e4b4f1873d4c24712e9a68c7ae5999884d7adb83a` |
+| **Last checked** | 2026-10-23 15:56:58 UTC |
+| **Last updated** | 2026-10-23 15:56:58 UTC |
 
 ## HSW keys
 
@@ -43,8 +43,8 @@ Cipher: **AES-256-GCM**. Wire format both ways:
 
 | Key | Value | What it is for |
 |-----|-------|----------------|
-| request\_key | `83dee5c3a0505e0938cea2156cfb31f22bef328bac1b4c77ff26f09a080693a3` | Encrypts the outbound request body — the key `hsw(1, plaintext)` uses |
-| response\_key | `d4bc73986a08cdf0cc734e80157f4cb719a99bfa246c15c45408b9ebe3e8a1fa` | Decrypts the `/getcaptcha` response — the key `hsw(0, blob)` uses |
+| request\_key | `86427db60d762770013167eca690107a4c73170721b32c7931281a4aa67b7ffa` | Encrypts the outbound request body — the key `hsw(1, plaintext)` uses |
+| response\_key | `f290bf250f5f5c60486a6db26703d94744470fc4bfa87ea42240e6af98b505ce` | Decrypts the `/getcaptcha` response — the key `hsw(0, blob)` uses |
 
 They are **two different keys**, and neither one works in place of the other.
 
@@ -83,10 +83,10 @@ Cipher: **AES-128-CBC** with PKCS#7 padding, sealed in the bundle's plain
 
 Plaintext is JSON: `[[event_id, value], ...]`, the behavioural event list.
 
-| Build | Key | Last round key |
-|-------|-----|----------------|
-| `425954adc4d740af` | `d9d0575a50d6aaad73b2c8b1e4714475` | `487c83cfbae2030b243ecefa86a8e12f` |
-| `e649efc4744281a6` | `72a3ed76fa5cf8a95c030a623250fbc3` | `8621097b76d58e0a6296be7e274803ea` |
+| Build | Key |
+|-------|-----|
+| `425954adc4d740af` | `d9d0575a50d6aaad73b2c8b1e4714475` |
+| `e649efc4744281a6` | `72a3ed76fa5cf8a95c030a623250fbc3` |
 
 Full hashes and per-build detail are in [data/history/](data/history/), under a
 `blob` key alongside `hsw` and `hsj`. A build whose blob key is known but whose
@@ -94,36 +94,16 @@ hsw/hsj keys were never captured gets a history entry with only the `blob`
 section.
 
 These keys are per build like every other key here, so this table needs a new
-row every rotation — several a day. Unlike the hsw and hsj keys, a blob key is
-**not** re-derived by the hourly run: each row was recovered by hand and is
-carried forward from the archive.
-
-### How a blob key is recovered
-
-The AES is a T-table implementation whose round keys are inlined as arithmetic
-over the obfuscator's state variables: there is no key schedule and no 16
-contiguous key bytes anywhere in memory. So the key is read out rather than
-found:
-
-1. Blank the five T-tables at seal time (`Px = axX = aNc = aWB = aqo = new
-   Uint32Array(256)` on build `e649efc4`; the names rotate with the bundle).
-   Every round then collapses to `0 ^ roundkey`, so the block function returns
-   the **last round key** for any input and the whole CBC chain emits that one
-   block repeated.
-2. Read that block off the token's blob — that is `last_round_key` above.
-3. Invert the AES-128 key schedule to get the master key.
-
-`last_round_key` is published so the derivation can be re-checked without
-re-running step 1.
+row every rotation — several a day. A blob key is not re-derived on a schedule
+the way the hsw and hsj keys are: a row appears once that build's key has been
+recovered and confirmed, and is carried forward from the archive.
 
 ### How each one is confirmed
 
-Two independent checks per build, and nothing is published unless both pass:
-
-- the plaintext it produces is byte-identical to the plaintext tapped out of
-  the same run's `BlobEncryption.encrypt`;
-- it opens an **earlier, uninstrumented** run's `fingerprint_blob` with valid
-  PKCS#7 padding.
+`K` is accepted iff it opens a `fingerprint_blob` from a **separate** run of
+the same build to a well-formed plaintext — valid PKCS#7 padding and a JSON
+event list. A candidate that fails is discarded and nothing is published for
+that build.
 
 ## Programmatic access
 
@@ -166,13 +146,13 @@ build**. The extractor re-derives them from scratch every run.
 
 | Role | Index |
 |------|-------|
-| u32 writer | `503` |
-| u16 writer | `799` |
-| u8 writer | `1128` |
-| u64 writer | `991` |
-| fixslice bitslice | `621` |
-| AES core | `419` |
-| hook import | `a.B (func 27)` |
+| u32 writer | `976` |
+| u16 writer | `625` |
+| u8 writer | `762` |
+| u64 writer | `459` |
+| fixslice bitslice | `823` |
+| AES core | `261` |
+| hook import | `a.b (func 1)` |
 
 ## HSJ keys
 
@@ -188,8 +168,8 @@ response_key K  is accepted iff  hsj(0, iv || GCM(K,iv,pt) || tag) == pt
 
 | Key | Value | Same as hsw |
 |-----|-------|-------------|
-| request\_key | `83dee5c3a0505e0938cea2156cfb31f22bef328bac1b4c77ff26f09a080693a3` | yes |
-| response\_key | `d4bc73986a08cdf0cc734e80157f4cb719a99bfa246c15c45408b9ebe3e8a1fa` | yes |
+| request\_key | `86427db60d762770013167eca690107a4c73170721b32c7931281a4aa67b7ffa` | yes |
+| response\_key | `f290bf250f5f5c60486a6db26703d94744470fc4bfa87ea42240e6af98b505ce` | yes |
 
 So one keyring covers a build whichever bundle a client is served.
 
