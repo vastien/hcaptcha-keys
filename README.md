@@ -4,7 +4,7 @@
 > build's own WASM module and confirmed against it before being published — plus
 > the AES-128-CBC key that build seals its `fingerprint_blob` with.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-24_12%3A12%3A56_UTC-blue)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-24_16%3A12%3A41_UTC-blue)
 ![Last updated](https://img.shields.io/badge/last_updated-2026-10-24_12%3A12%3A56_UTC-green)
 ![Build](https://img.shields.io/badge/build-524df20a65a85976-lightgrey)
 ![Keys confirmed](https://img.shields.io/badge/keys_confirmed-both-brightgreen)
@@ -33,7 +33,7 @@ claim is that bundle's SRI hash. Keys here are indexed by that build hash.
 | **Bundle** | `https://newassets.hcaptcha.com/c/524df20a65a859765b289d73813b4d0a504d16025133a2da92c0fefcab29976c/hsw.js` |
 | **Bundle SRI** | `sha256-x3Sg+FDSbgTIP/dcyFZrZZraiqW8xybOR4+T9cVH1X8=` |
 | **Runtime WASM sha256** | `01f4faf0b3e296cc7481466639571509f7e6126f7721756c32a137dd6e2cdbad` |
-| **Last checked** | 2026-10-24 12:12:56 UTC |
+| **Last checked** | 2026-10-24 16:12:41 UTC |
 | **Last updated** | 2026-10-24 12:12:56 UTC |
 
 ## HSW keys
