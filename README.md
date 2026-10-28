@@ -4,9 +4,9 @@
 > build's own WASM module and confirmed against it before being published — plus
 > the AES-128-CBC key that build seals its `fingerprint_blob` with.
 
-![Last checked](https://img.shields.io/badge/last_checked-2026-10-28_07%3A19%3A01_UTC-blue)
-![Last updated](https://img.shields.io/badge/last_updated-2026-10-28_07%3A19%3A01_UTC-green)
-![Build](https://img.shields.io/badge/build-373a141e9f5686a0-lightgrey)
+![Last checked](https://img.shields.io/badge/last_checked-2026-10-28_14%3A24%3A40_UTC-blue)
+![Last updated](https://img.shields.io/badge/last_updated-2026-10-28_14%3A24%3A40_UTC-green)
+![Build](https://img.shields.io/badge/build-3d1f398a98df82c2-lightgrey)
 ![Keys confirmed](https://img.shields.io/badge/keys_confirmed-both-brightgreen)
 
 ## ⚠️ Disclaimer
@@ -29,12 +29,12 @@ claim is that bundle's SRI hash. Keys here are indexed by that build hash.
 
 | Field | Value |
 |-------|-------|
-| **Build** | `373a141e9f5686a0f4c1993555cfa5cd0272829e0069531a76e29d506d175ce2` |
-| **Bundle** | `https://newassets.hcaptcha.com/c/373a141e9f5686a0f4c1993555cfa5cd0272829e0069531a76e29d506d175ce2/hsw.js` |
-| **Bundle SRI** | `sha256-hdABavb2FV2bGHnFXNq2SNyqo2nHgtWeAdIcUzXvGcY=` |
-| **Runtime WASM sha256** | `6776a20479ce54a91e226b1add53e84a4298f6f8c0f230d8ae9a4f84a9d3962c` |
-| **Last checked** | 2026-10-28 07:19:01 UTC |
-| **Last updated** | 2026-10-28 07:19:01 UTC |
+| **Build** | `3d1f398a98df82c2fb536989216c0a1b94786b855c2e0ce335f8f651fb575055` |
+| **Bundle** | `https://newassets.hcaptcha.com/c/3d1f398a98df82c2fb536989216c0a1b94786b855c2e0ce335f8f651fb575055/hsw.js` |
+| **Bundle SRI** | `sha256-CEkx4E2F91uh9CF0gP0kkNQnnxuvG+bDgEpw1ODfsv8=` |
+| **Runtime WASM sha256** | `2be79e36156f89f4759e2e9b5438f571fe972309881579cd29b7235ea1bb1431` |
+| **Last checked** | 2026-10-28 14:24:40 UTC |
+| **Last updated** | 2026-10-28 14:24:40 UTC |
 
 ## HSW keys
 
@@ -43,8 +43,8 @@ Cipher: **AES-256-GCM**. Wire format both ways:
 
 | Key | Value | What it is for |
 |-----|-------|----------------|
-| request\_key | `e56b30c635f27da99aa9f5c32430bf016f73f6d2143c978b63eccb3e30adfb50` | Encrypts the outbound request body — the key `hsw(1, plaintext)` uses |
-| response\_key | `492e3ac8fd6b974209149f2575d1cee8aad19159e7aaaa735c13dca848b31319` | Decrypts the `/getcaptcha` response — the key `hsw(0, blob)` uses |
+| request\_key | `9cb0d768f1c297e95bb58ef8718318e80b66c7d7b9d3dcf3454ac0a044f71fa9` | Encrypts the outbound request body — the key `hsw(1, plaintext)` uses |
+| response\_key | `547090766600b33b36270d92285ab18f942c9f06794de1befc2b7ecd34f345e1` | Decrypts the `/getcaptcha` response — the key `hsw(0, blob)` uses |
 
 They are **two different keys**, and neither one works in place of the other.
 
@@ -146,13 +146,13 @@ build**. The extractor re-derives them from scratch every run.
 
 | Role | Index |
 |------|-------|
-| u32 writer | `378` |
-| u16 writer | `1022` |
-| u8 writer | `650` |
-| u64 writer | `326` |
-| fixslice bitslice | `853` |
-| AES core | `218` |
-| hook import | `a.la (func 65)` |
+| u32 writer | `537` |
+| u16 writer | `674` |
+| u8 writer | `500` |
+| u64 writer | `721` |
+| fixslice bitslice | `718` |
+| AES core | `976` |
+| hook import | `a.C (func 28)` |
 
 ## HSJ keys
 
@@ -168,8 +168,8 @@ response_key K  is accepted iff  hsj(0, iv || GCM(K,iv,pt) || tag) == pt
 
 | Key | Value | Same as hsw |
 |-----|-------|-------------|
-| request\_key | `e56b30c635f27da99aa9f5c32430bf016f73f6d2143c978b63eccb3e30adfb50` | yes |
-| response\_key | `492e3ac8fd6b974209149f2575d1cee8aad19159e7aaaa735c13dca848b31319` | yes |
+| request\_key | `9cb0d768f1c297e95bb58ef8718318e80b66c7d7b9d3dcf3454ac0a044f71fa9` | yes |
+| response\_key | `547090766600b33b36270d92285ab18f942c9f06794de1befc2b7ecd34f345e1` | yes |
 
 So one keyring covers a build whichever bundle a client is served.
 
