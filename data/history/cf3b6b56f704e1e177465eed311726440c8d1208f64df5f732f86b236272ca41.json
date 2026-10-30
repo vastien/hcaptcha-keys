@@ -1,0 +1,63 @@
+{
+  "version": "cf3b6b56f704e1e177465eed311726440c8d1208f64df5f732f86b236272ca41",
+  "last_checked": "2026-10-30T00:13:37.478Z",
+  "last_updated": "2026-10-30T00:13:37.478Z",
+  "hsw": {
+    "cipher": "AES-256-GCM",
+    "request_key": "839feae4979e6ec9dcf3513e55474bf09341cf3e673329e172579f06e98a85e4",
+    "request_wire": "iv(12) || ct(N) || tag(16)",
+    "response_key": "43a3f5104f5430500b82af1760c89e043775a8078e104e4fd7f033aa6fb94edc",
+    "response_wire": "iv(12) || ct(N) || tag(16)",
+    "verified": true,
+    "verification": "request_key: GCM-decrypting hsw(1, pt) under it returns pt. response_key: hsw(0, iv||GCM(key,iv,pt)||tag) returns pt. Both checked against this build's own WASM module.",
+    "extraction_method": "fixslice bitslice write interception + module oracle",
+    "bundle_sri": "sha256-+svl50KcPKEPhGD422az4W5RnYusTLlwmBSAwF212bY=",
+    "bundle_sha256": "facbe5e7429c3ca10f8460f8db66b3e16e519d8bac4cb970981480c05db5d9b6",
+    "wasm_sha256": "6a967fd50fbc07926f7eeab34d1dbacb4e6264939574717d6f75c37b2231fec0",
+    "functions": {
+      "u32_writer": 775,
+      "u16_writer": 521,
+      "u8_writer": 713,
+      "u64_writer": 213,
+      "bitslice": 1127,
+      "aes_core": 791,
+      "hook_import": "a.j",
+      "hook_func": 9,
+      "hook_unused": false,
+      "fixslice_functions": [
+        791,
+        1127,
+        1144
+      ],
+      "accessor_count": 16
+    },
+    "extracted_at": "2026-10-30T00:13:37.478Z"
+  },
+  "hsj": {
+    "cipher": "AES-256-GCM",
+    "request_key": "839feae4979e6ec9dcf3513e55474bf09341cf3e673329e172579f06e98a85e4",
+    "request_wire": "iv(12) || ct(N) || tag(16)",
+    "response_key": "43a3f5104f5430500b82af1760c89e043775a8078e104e4fd7f033aa6fb94edc",
+    "response_wire": "iv(12) || ct(N) || tag(16)",
+    "verified": true,
+    "matches_hsw": true,
+    "verification": "request_key: GCM-decrypting hsj(1, pt) under it returns pt. response_key: hsj(0, iv||GCM(key,iv,pt)||tag) returns pt. Checked against hsj's own code, independently of hsw.",
+    "extraction_method": "fixslice bitslice write interception + hsj oracle",
+    "bundle_sha256": "ec1b97b870e1ececfaef50a4676b36b6d9464e8f9af4f14a48ce56521fc626ca",
+    "functions": {
+      "u32_writer": "TX",
+      "u16_writer": "pt",
+      "u8_writer": "ayt",
+      "f32_writer": "VO",
+      "bitslice_candidates": [
+        "aOd",
+        "a$V",
+        "Im"
+      ],
+      "aes_core": "a$V",
+      "accessor_count": 11
+    },
+    "extracted_at": "2026-10-30T00:13:37.478Z"
+  },
+  "archived_at": "2026-10-30T00:13:37.478Z"
+}
