@@ -1,62 +1,62 @@
 {
-  "version": "272b77544257f8b5d1209d60e2aeb26126090f73466f3b1ed29c135a69f8bc35",
-  "last_checked": "2026-11-15T11:25:54.157Z",
-  "last_updated": "2026-11-15T11:25:54.157Z",
+  "version": "5b903837de51c8d31a4be80a96b8b6d077228f2a45a71cbd84045155845bc537",
+  "last_checked": "2026-11-15T17:57:31.710Z",
+  "last_updated": "2026-11-15T17:57:31.710Z",
   "hsw": {
     "cipher": "AES-256-GCM",
-    "request_key": "7e39567f93f96e7b7a6012eccb6ce8ef879806b1f44cb20d7807e085bc26b00d",
+    "request_key": "d126bc98828ad44a99c525df5d182779baf404a1eec2807f7328668b9ced0539",
     "request_wire": "iv(12) || ct(N) || tag(16)",
-    "response_key": "011f9977daf5c000019d749e1e843702e4eac9c892798d11dee6490769eedb13",
+    "response_key": "377bfad264d41e2673d31b6818df4e6072f3762d5a7c6b78e580beb3beb8c99e",
     "response_wire": "iv(12) || ct(N) || tag(16)",
     "verified": true,
     "verification": "request_key: GCM-decrypting hsw(1, pt) under it returns pt. response_key: hsw(0, iv||GCM(key,iv,pt)||tag) returns pt. Both checked against this build's own WASM module.",
     "extraction_method": "fixslice bitslice write interception + module oracle",
-    "bundle_sri": "sha256-X/Ds9/N3VHmxz+i8GBgMy9cCIzKYUurzaNhjsMb0nTQ=",
-    "bundle_sha256": "5ff0ecf7f3775479b1cfe8bc18180ccbd70223329852eaf368d863b0c6f49d34",
-    "wasm_sha256": "1e19feec6bd3adb930877f4428d5eea1971fd5a6c9118a5f93eee19ac771fe60",
+    "bundle_sri": "sha256-aa4OeDdO2rUig9TTkpx20vaftne0+lkjNS2URcZvv8M=",
+    "bundle_sha256": "69ae0e78374edab52283d4d3929c76d2f69fb677b4fa5923352d9445c66fbfc3",
+    "wasm_sha256": "b233a92603ced9870832569f61a279a69ad1411105a9e129d3541a0f14704ab1",
     "functions": {
-      "u32_writer": 1198,
-      "u16_writer": 562,
-      "u8_writer": 949,
-      "u64_writer": 888,
-      "bitslice": 1212,
-      "aes_core": 664,
-      "hook_import": "a.S",
-      "hook_func": 44,
+      "u32_writer": 1110,
+      "u16_writer": 643,
+      "u8_writer": 241,
+      "u64_writer": 937,
+      "bitslice": 856,
+      "aes_core": 898,
+      "hook_import": "a.za",
+      "hook_func": 79,
       "hook_unused": false,
       "fixslice_functions": [
-        664,
-        1028,
-        1212
+        424,
+        856,
+        898
       ],
       "accessor_count": 16
     },
-    "extracted_at": "2026-11-15T11:25:54.157Z"
+    "extracted_at": "2026-11-15T17:57:31.710Z"
   },
   "hsj": {
     "cipher": "AES-256-GCM",
-    "request_key": "7e39567f93f96e7b7a6012eccb6ce8ef879806b1f44cb20d7807e085bc26b00d",
+    "request_key": "d126bc98828ad44a99c525df5d182779baf404a1eec2807f7328668b9ced0539",
     "request_wire": "iv(12) || ct(N) || tag(16)",
-    "response_key": "011f9977daf5c000019d749e1e843702e4eac9c892798d11dee6490769eedb13",
+    "response_key": "377bfad264d41e2673d31b6818df4e6072f3762d5a7c6b78e580beb3beb8c99e",
     "response_wire": "iv(12) || ct(N) || tag(16)",
     "verified": true,
     "matches_hsw": true,
     "verification": "request_key: GCM-decrypting hsj(1, pt) under it returns pt. response_key: hsj(0, iv||GCM(key,iv,pt)||tag) returns pt. Checked against hsj's own code, independently of hsw.",
     "extraction_method": "fixslice bitslice write interception + hsj oracle",
-    "bundle_sha256": "8fcfdfcbed0aefd180aba322b059ce70c756a0b3a861c0f9379ff4f17141489e",
+    "bundle_sha256": "ed4a17ebfcc0cd32830ad910f048abac17f731d0a0f12d6f47204a6e1d012284",
     "functions": {
-      "u32_writer": "bT",
-      "u16_writer": "aQK",
-      "u8_writer": "bbY",
-      "f32_writer": "kS",
+      "u32_writer": "D$",
+      "u16_writer": "Hf",
+      "u8_writer": "asw",
+      "f32_writer": "Tw",
       "bitslice_candidates": [
-        "XK",
-        "LS",
-        "avZ"
+        "hU",
+        "aPt",
+        "km"
       ],
-      "aes_core": "LS",
+      "aes_core": "aPt",
       "accessor_count": 11
     },
-    "extracted_at": "2026-11-15T11:25:54.157Z"
+    "extracted_at": "2026-11-15T17:57:31.710Z"
   }
 }
